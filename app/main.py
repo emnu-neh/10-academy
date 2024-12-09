@@ -3,13 +3,29 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
 
 # Example: Load your dataset (replace this with your actual data loading code)
 @st.cache_data
+@st.cache_data
 def load_data():
-    # Replace this with your actual data fetching/processing function
-    df = pd.read_csv('./data/benin-malanville.csv')
+    # Define the file path
+    file_path = './data/benin-malanville.csv'
+
+    # Check if the file exists and print debugging info
+    file_exists = os.path.exists(file_path)
+    # st.write("File Exists:", file_exists)
+    # st.write("Current Directory:", os.getcwd())
+    # st.write("Contents:", os.listdir('./data') if os.path.exists('./data') else "Data directory not found.")
+
+    if not file_exists:
+        st.error(f"File not found at path: {file_path}")
+        return pd.DataFrame()  # Return an empty DataFrame to avoid breaking
+
+    # Load the CSV file
+    df = pd.read_csv(file_path)
     return df
+
 
 df = load_data()
 
