@@ -8,7 +8,7 @@ import seaborn as sns
 @st.cache_data
 def load_data():
     # Replace this with your actual data fetching/processing function
-    df = pd.read_csv('../data/benin-malanville.csv')
+    df = pd.read_csv('./data/benin-malanville.csv')
     return df
 
 df = load_data()
